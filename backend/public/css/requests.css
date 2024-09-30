@@ -1,0 +1,43 @@
+
+.accepted-request {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #ffffff;
+    transition: box-shadow 0.2s ease;
+}
+
+.accepted-request:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.accepted-request p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.accepted-request label {
+    font-weight: bold;
+}
+
+.accepted-request select {
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    width: 100%;
+}
+
+.accepted-request select:hover {
+    border-color: #007bff;
+    cursor: pointer;
+}
+
+
+.request-box {
+    background-color: #ddd; /* Red background for requests */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}

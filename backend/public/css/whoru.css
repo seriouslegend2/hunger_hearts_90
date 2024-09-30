@@ -1,0 +1,566 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2;
+  }
+  
+  .company-logo {
+    width: 50px; /* adjust as per your icon size */
+    height: 50px; /* adjust as per your icon size */
+  }
+  .company-name {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000; /* or any color you prefer */
+  }
+  
+  
+  .main-content {
+    display: flex;
+  }
+  
+  
+  
+  .buttons-init {
+    width: 40%; /* Adjust as per your button width */
+    
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-link {
+    text-decoration: none;
+   
+  }
+  
+  
+  /* Styles for the slideshow container */
+.slideshow-container {
+    position: relative;
+    flex: 1;
+  }
+  
+  .mySlides {
+    display: none;
+    width:160%;
+  }
+  
+
+  .card {
+    width: 400px;
+    height: 350px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: rgba(255, 255, 255, 0.074); /* Updated for transparency */
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset; /* Added shadow */
+    transition: all ease 0.3s; /* Smooth transition for all properties */
+    position: relative; /* Positioning for pseudo-elements */
+}
+
+
+
+
+.card::after {
+    height: 3rem;
+    top: 8%;
+    right: 5%;
+    border: 1px solid rgba(255, 255, 255, 0.222); /* Border for decorative element */
+}
+
+.card:hover {
+    box-shadow: 0px 0px 20px 1px #ffbb763f; /* Enhanced shadow on hover */
+    border: 1px solid rgba(255, 255, 255, 0.454); /* Border effect on hover */
+}
+
+/* Optional: Additional styling for card content */
+.card .title {
+    font-size: 1.5rem; /* Example title size */
+    font-weight: 500; /* Title weight */
+    color: #333; /* Title color */
+    margin-bottom: 1rem; /* Spacing below title */
+}
+
+.card .content {
+    font-size: 1rem; /* Content text size */
+    color: #555; /* Content text color */
+}
+   .shadow {
+    border-radius: 30px;
+    background: #e0e0e0;
+  box-shadow: 15px 15px 30px #bebebe,
+             -15px -15px 30px #ffffff;
+   }
+
+   /* From Uiverse.io by cssbuttons-io */ 
+button {
+    margin: 30px;
+    margin-left: 110px;
+
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    outline: none;
+    border: 0;
+    vertical-align: middle;
+    text-decoration: none;
+    background: transparent;
+    padding: 0;
+    font-size: inherit;
+    font-family: inherit;
+   }
+   
+   button.learn-more {
+    width: 12rem;
+    height: auto;
+   }
+   
+   button.learn-more .circle {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: relative;
+    display: block;
+    margin: 0;
+    width: 3rem;
+    height: 3rem;
+    background: #282936;
+    border-radius: 1.625rem;
+   }
+   
+   button.learn-more .circle .icon {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    background: #fff;
+   }
+   
+   button.learn-more .circle .icon.arrow {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    left: 0.625rem;
+    width: 1.125rem;
+    height: 0.125rem;
+    background: none;
+   }
+   
+   button.learn-more .circle .icon.arrow::before {
+    position: absolute;
+    content: "";
+    top: -0.29rem;
+    right: 0.0625rem;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-top: 0.125rem solid #fff;
+    border-right: 0.125rem solid #fff;
+    transform: rotate(45deg);
+   }
+   
+   button.learn-more .button-text {
+    transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 0.75rem 0;
+    margin: 0 0 0 1.85rem;
+    color: #282936;
+    font-weight: 700;
+    line-height: 1.6;
+    text-align: center;
+    text-transform: uppercase;
+   }
+   
+   button:hover .circle {
+    width: 100%;
+   }
+   
+   button:hover .circle .icon.arrow {
+    background: #fff;
+    transform: translate(1rem, 0);
+   }
+   
+   button:hover .button-text {
+    color: #fff;
+   }
+
+   /*carousel*/
+
+   .carousel-container {
+    width: 100%;
+    background-color: #b9b084;
+    color: #0056b3;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.carousel {
+  height: 50px;
+    /* margin-top: 20px; */
+    background-color: #b9b084;
+    height: 4rem;
+  display: flex;
+  white-space: nowrap;
+  animation: scroll 20s linear infinite;
+}
+
+.slide {
+    min-width: 150px; /* Adjust the width as needed */
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ccc;
+    margin: 5px;
+}
+
+/* Keyframes for the scrolling animation */
+@keyframes scroll {
+    0% {
+        transform: translateX(-100%);
+    }
+    50% {
+        transform: translateX(100%); /* Adjust based on total visible slides */
+    }
+    100% {
+      transform: translateX(-calc(150px * 8)); /* Adjust based on total visible slides */
+  }
+}
+
+
+/*section 3 image*/
+.s3-section{
+    display: flex;
+    flex-direction: column;
+}
+.s3-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    align-items: center;
+    justify-content:center;
+    background-color: #1c1c1e;
+    flex-direction: row;
+}
+
+.s3-left-section {
+    flex: 2; /* Takes up more space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60%;
+}
+
+.s3-video-player {
+    width: 90%; /* Large video size */
+    height: 90%;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6); /* Adding depth */
+}
+
+.s3-right-section {
+    flex: 1; /* Text takes up less space */
+    padding: 40px;
+    background-color: #1c1c1e;
+     /* Full height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.s3-text-content {
+    width: 80%; /* Limits the text width */
+}
+
+.s3-text-content h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.s3-text-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #d0d0d0;
+}
+
+.s3-container.reverse{
+    flex-direction: row-reverse;
+}
+
+.frames3{
+    width: 70%;
+    height: 400px;
+}
+
+.text-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.left-text, .right-text {
+  width: 45%;
+  text-align: center;
+}
+
+.text-heading {
+  font-weight: bold;
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.text-description {
+  font-size: 1em;
+  color: #333;
+}
+/*sectionn 4*/
+.s4container {
+ 
+    width:80%;
+    height: 80vh;
+    display: flex;
+    align-items:center;
+    justify-content:center;
+    margin:50px;
+    margin-left: 140px;
+    border-radius: 30px;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe,
+               -15px -15px 30px #ffffff;
+  }
+  
+  .s4button-container {
+    margin-right: 100px;
+    
+  }
+  
+  
+  #s4main-image {
+    max-width: 100%;
+    border-radius: 10px;
+    height:40rem;
+  }
+  
+
+  
+  @import url("https://fonts.googleapis.com/css?family=DM+Sans:400,500,700&display=swap");
+
+  * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+  }
+
+  .wrapper {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px 10px;
+      font-family: 'DM Sans', sans-serif;
+      transition: background .4s ease-in;
+      background-color: #c394f8;
+  }
+
+  input[type=radio] {
+      display: none;
+  }
+
+  .card_carousel {
+      position: absolute;
+      width: 60%;
+      height: 100%;
+      left: 0;
+      right: 0;
+      margin: auto;
+      transition: transform .4s ease;
+      cursor: pointer;
+  }
+
+  .container {
+      width: 100%;
+      max-width: 800px;
+      max-height: 600px;
+      height: 100%;
+      transform-style: preserve-3d;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .cards {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin-bottom: 20px;
+  }
+
+  .img_carousel {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+  }
+
+  #item-1:checked ~ .cards #song-3,
+  #item-2:checked ~ .cards #song-1,
+  #item-3:checked ~ .cards #song-2 {
+      transform: translatex(-40%) scale(.8);
+      opacity: .4;
+      z-index: 0;
+  }
+
+  #item-1:checked ~ .cards #song-2,
+  #item-2:checked ~ .cards #song-3,
+  #item-3:checked ~ .cards #song-1 {
+      transform: translatex(40%) scale(.8);
+      opacity: .4;
+      z-index: 0;
+  }
+
+  #item-1:checked ~ .cards #song-1,
+  #item-2:checked ~ .cards #song-2,
+  #item-3:checked ~ .cards #song-3 {
+      transform: translatex(0) scale(1);
+      opacity: 1;
+      z-index: 1;
+
+      .img_carousel {
+          box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+      }
+  }
+
+  /* From Uiverse.io by lenfear23 */ 
+.s4image-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+  cursor: pointer;
+  width: 150px;
+  height: 50px;
+  background-image: linear-gradient(to top, #D8D9DB 0%, #fff 80%, #FDFDFD 100%);
+  border-radius: 30px;
+  border: 1px solid #8F9092;
+  transition: all 0.2s ease;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #606060;
+  text-shadow: 0 1px #fff;
+}
+
+.s4image-button:hover {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 3px 3px #CECFD1;
+}
+
+.s4image-button:active {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+.s4image-button:focus {
+  box-shadow: 0 4px 3px 1px #FCFCFC, 0 6px 8px #D6D7D9, 0 -4px 4px #CECFD1, 0 -6px 4px #FEFEFE, inset 0 0 5px 3px #999, inset 0 0 30px #aaa;
+}
+
+
+.site-footer {
+  background-color: #483C32; /* Brown background */
+  color: #eeece6; /* Light beige text */
+  padding: 25px;
+  width: 100vw;
+  box-sizing: border-box;
+  min-height: 300px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer-content {
+  width: 100%;
+  max-width: 1200px; /* Adjust max-width to center the content nicely */
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* Three equal columns */
+  gap: 30px; /* Increase space between columns */
+  align-items: center;
+}
+
+.footer-logo {
+  max-width: 250px; /* Ensure the logo scales nicely */
+  height: auto;
+  fill: #ffffff; /* White fill for the logo */
+}
+
+.footer-info {
+  max-width: 100%;
+}
+
+.footer-business-name {
+  font-size: 18px !important;
+letter-spacing:3px;
+  font-weight: 600;
+text-transform:uppercase;
+  margin-bottom: 10px;
+}
+
+.footer-business-address,
+.footer-business-phone {
+  font-size: 16px;
+  margin: 5px 0;
+  line-height: 1.5;
+letter-spacing:1px;
+}
+
+.footer-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.footer-nav li {
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+.footer-nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  transition: color 0.3s ease;
+letter-spacing:2px;
+text-transform:uppercase;
+}
+
+.footer-nav a:hover {
+  color: #d1bfa7; /* Lightened color on hover */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .footer-content {
+      grid-template-columns: 1fr; /* Stack columns vertically on small screens */
+      text-align: center;
+    transform:scale(0.90);
+  }
+
+  .footer-nav ul {
+      justify-content: center;
+  }
+}

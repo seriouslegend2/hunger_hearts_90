@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donor Homepage</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/donor_homepage.css">
+
+    
+  </head>
+  <body>
+
+    <nav x-data="{ isOpen: false }" class="relative bg-white shadow dark:bg-gray-800">
+      <div class="container px-6 py-3 mx-auto md:flex">
+          <div class="flex items-center justify-between">
+            <a href="#">
+              <img class="w-auto h-6 sm:h-7" src="/assets/logo.jpg" alt="donor">
+            </a>
+            
+            <div class="nav-item">
+              <a class="nav-link " href="/auth/d_logout">Logout</a>
+            </div>
+          </nav>
+  
+              <!-- Mobile menu button -->
+              <div class="flex lg:hidden">
+                  <button x-cloak @click="isOpen = !isOpen" type="button" class="text-gray-500 dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400" aria-label="toggle menu">
+                      <svg x-show="!isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M4 8h16M4 16h16" />
+                      </svg>
+              
+                      <svg x-show="isOpen" xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                  </button>
+              </div>
+          </div>
+                      
+      </div>
+  
+
+    <div class="col-lg-12 d-flex">
+      <div class="col-lg-3">
+        <aside class="fixed top-0 left-0 z-50 w-64 h-screen px-4 py-8 bg-white border-r shadow-lg rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+          <a href="#" class="flex items-center px-4 py-2 -mx-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-md transition duration-300 ease-in-out">
+            <span class="mx-2 font-extrabold text-2xl text-gray-800 dark:text-gray-200 tracking-wide"><%= donor.username %></span>
+          </a>
+        
+          <div class="relative mt-6">
+            <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </span>
+            <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-900 dark:text-gray-300 dark:border-gray-600 focus:border-blue-400 dark:focus:border-blue-300 focus:ring-blue-300 focus:ring-opacity-40 focus:outline-none focus:ring" placeholder="Search" />
+          </div>
+        
+          <div class="flex flex-col justify-between flex-1 mt-6">
+            <nav>
+              <a class="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-md dark:bg-gray-800 dark:text-gray-200" href="#" id="sendRequestLink">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7M5 11V9C5 7.89543 5.89543 7 7 7M7 7V5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V7M7 7H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="mx-4 font-medium">Send Request</span>
+              </a>
+        
+              <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#" id="createPostLink">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="mx-4 font-medium">Create a Post</span>
+              </a>
+        
+              <a class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700" href="#" id="allPostsLink">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M15 5V7M15 11V13M15 17V19M5 5C3.89543 5 3 5.89543 3 7V10C4.10457 10 5 10.8954 5 12C5 13.1046 4.10457 14 3 14V17C3 18.1046 3.89543 19 5 19H19C20.1046 19 21 18.1046 21 17V14C19.89543 14 19 13.1046 19 12C19 10.8954 19.8954 10 21 10V7C21 5.89543 20.1046 5 19 5H5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <span class="mx-4 font-medium">All Posts</span>
+              </a>
+            </nav>
+          </div>
+        </aside>
+        
+        
+        
+      </div>
+      <div class="col-lg-9">
+        <div class="container flex-1">
+          <!-- Send Request Section -->
+          <div id="sendRequestSection" class="form-section">
+            <h2>Submit a Request</h2>
+            <form id="requestForm" action="/request/addRequest" method="POST">
+              <div class="form-group">
+                <label for="donorUsername">Donor Username:</label>
+                <input type="text" id="donorUsername" name="donorUsername" value="<%= donor.username %>" readonly required class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="userUsername">User Username:</label>
+                <input type="text" id="userUsername" name="userUsername" required class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="location">Location (optional):</label>
+                <input type="text" id="location" name="location" class="form-control">
+              </div>
+              <div class="form-group">
+                <label for="availableFood">Available Food (comma-separated):</label>
+                <input type="text" id="availableFood" name="availableFood" required class="form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit Request</button>
+            </form>
+          </div>
+    
+          <!-- Create Post Section -->
+          <div id="createPostSection" class="form-section" style="display: none;">
+            <h2>Create a Post</h2>
+            <form action="/post/createPost" method="POST">
+              <div class="form-group">
+                  <label for="donorUsername">Donor Username:</label>
+                  <input type="text" id="donorUsername" name="donorUsername" value="<%= donor.username %>" readonly required class="form-control">
+              </div>
+              <div class="form-group">
+                  <label for="location">Location (optional):</label>
+                  <input type="text" id="location" name="location" class="form-control" placeholder="Enter location (optional)">
+              </div>
+              <div class="form-group">
+                  <label for="availableFood">Available Food (comma-separated):</label>
+                  <input type="text" id="availableFood" name="availableFood" required class="form-control" placeholder="Enter available food">
+              </div>
+              <!-- Hidden inputs for latitude and longitude -->
+              <input type="hidden" id="latitude" name="latitude">
+              <input type="hidden" id="longitude" name="longitude">
+              <button type="button" id="getLocationButton" class="btn btn-secondary">Get Current Location</button>
+              <button type="submit" class="btn btn-primary">Create Post</button>
+          </form>
+      
+          </div>
+    
+          <!-- All Posts Section -->
+          <div id="allPostsSection" class="form-section" style="display: none;">
+            <h2>All Posts</h2>
+            <% if (postsList.length > 0) { %>
+              <ul class="list-group">
+                <% postsList.forEach(post => { %>
+                  <li class="list-group-item">
+                    <strong>Donor:</strong> <%= post.donorUsername %><br>
+                    <strong>Location:</strong> <%= post.location || 'Not provided' %><br>
+                    <strong>Available Food:</strong> <%= post.availableFood.join(', ') %><br>
+                    <strong>Deal Closed:</strong> <%= post.isDealClosed ? 'Yes' : 'No' %><br>
+                    <strong>Posted on:</strong> <%= new Date(post.timestamp).toLocaleString() %><br>
+                    <button class="btn btn-secondary show-requests-btn" data-post-id="<%= post._id %>">Show Requests</button>
+                  </li>
+                <% }); %>
+              </ul>
+            <% } else { %>
+              <p>No posts available.</p>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="modal" tabindex="-1" role="dialog" id="requestsModal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Requests</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <ul id="requestsList"></ul>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Main Content -->
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="/js/donor_homepage.js"></script>
+    <script>
+      // JavaScript to toggle between sections
+      document.getElementById('sendRequestLink').addEventListener('click', function () {
+        showSection('sendRequestSection');
+      });
+
+      document.getElementById('createPostLink').addEventListener('click', function () {
+        showSection('createPostSection');
+      });
+
+      document.getElementById('allPostsLink').addEventListener('click', function () {
+        showSection('allPostsSection');
+      });
+
+      function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.form-section').forEach(section => {
+          section.style.display = 'none';
+        });
+        // Show the selected section
+        document.getElementById(sectionId).style.display = 'block';
+      }
+      
+      document.querySelectorAll('.show-requests-btn').forEach(button => {
+        button.addEventListener('click', async function() {
+          const postId = this.getAttribute('data-post-id');
+          
+          try {
+            // Send GET request to get requests for the selected post
+            const response = await fetch(`/request/getRequestsForPost?postId=${postId}`);
+            const data = await response.json();
+            console.log("printing");
+      
+            if (data.success) {
+              // Populate the modal with the list of requests
+              const requestsList = document.getElementById('requestsList');
+              requestsList.innerHTML = ''; // Clear previous requests
+      
+              if (data.requests.length > 0) {
+                data.requests.forEach(request => {
+                  const li = document.createElement('li');
+                  li.innerHTML = `
+                    <strong>User:</strong> ${request.userUsername}<br>
+                    <strong>Location:</strong> ${request.location || 'Not provided'}<br>
+                    <strong>Available Food:</strong> ${request.availableFood.join(', ')}<br>
+                    ${request.isAccepted ? '<strong>Status:</strong> Accepted Request<br>' : ''}
+                    ${request.isRejected ? '<strong>Status:</strong> You Rejected this<br>' : ''}
+                    ${!request.isAccepted && !request.isRejected ? 
+                      `<button class="btn btn-success accept-btn" data-request-id="${request._id}">Accept</button>` 
+                      : ''}
+                  `;
+                  requestsList.appendChild(li);
+                });
+      
+                // Attach event listeners to all "Accept" buttons
+                document.querySelectorAll('.accept-btn').forEach(acceptBtn => {
+                  acceptBtn.addEventListener('click', async function() {
+                    const requestId = this.getAttribute('data-request-id');
+        
+                    try {
+                      // Send PATCH request to accept the request
+                      const response = await fetch(`/request/acceptRequest/${requestId}`, {
+                        method: 'PATCH',
+                      });
+      
+                      if (response.ok) {
+                        const updatedRequest = await response.json();
+                        alert(`Request accepted: ${updatedRequest._id}`);
+      
+                        // Refresh the requests to reflect the updated status
+                        const postResponse = await fetch(`/request/getRequestsForPost?postId=${postId}`);
+                        const updatedData = await postResponse.json();
+      
+                        // Update the request list in the modal
+                        requestsList.innerHTML = ''; // Clear requests again
+      
+                        updatedData.requests.forEach(request => {
+                          const li = document.createElement('li');
+                          li.innerHTML = `
+                            <strong>User:</strong> ${request.userUsername}<br>
+                            <strong>Location:</strong> ${request.location || 'Not provided'}<br>
+                            <strong>Available Food:</strong> ${request.availableFood.join(', ')}<br>
+                            ${request.isAccepted ? '<strong>Status:</strong> Accepted Request<br>' : ''}
+                            ${request.isRejected ? '<strong>Status:</strong> You Rejected this<br>' : ''}
+                          `;
+                          requestsList.appendChild(li);
+                        });
+                      } else {
+                        alert('Failed to accept request');
+                      }
+                    } catch (error) {
+                      console.error('Error accepting request:', error);
+                      alert('An error occurred while accepting the request.');
+                    }
+                  });
+                });
+      
+              } else {
+                requestsList.innerHTML = '<p>No requests available for this post.</p>';
+              }
+      
+              // Show the modal
+              $('#requestsModal').modal('show');
+            } else {
+              alert(data.message);
+            }
+          } catch (error) {
+            console.error('Error fetching requests:', error);
+            alert('An error occurred while fetching requests.');
+          }
+        });
+      });
+      
+      function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                const latitude = position.coords.latitude;
+                const longitude = position.coords.longitude;
+    
+                document.getElementById('latitude').value = latitude;
+                document.getElementById('longitude').value = longitude;
+    
+                alert("Location has been set to your current coordinates.");
+            }, () => {
+                alert("Unable to retrieve your location.");
+            });
+        } else {
+            alert("Geolocation is not supported by this browser.");
+        }
+    }
+    
+    document.getElementById('getLocationButton').addEventListener('click', getCurrentLocation);
+    </script>
+  </body>
+</html>

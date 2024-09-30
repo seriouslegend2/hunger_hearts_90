@@ -1,0 +1,288 @@
+body {
+    background-color: #121212; /* Dark background */
+    color: #fff; /* Text color */
+    height: 100vh; /* Full viewport height */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container {
+    background-color: #1e1e1e; /* Form background */
+    border-radius: 8px;
+    padding: 2rem;
+    width: 100%;
+    max-width: 600px; /* Increased width */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    position: relative; /* Position relative for child elements */
+    z-index: 1; /* Ensure it's above the modal */
+}
+
+.form-control {
+    background-color: #2b2b2b; /* Input field background */
+    border: none;
+    color: #000000; /* Input text color */
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+}
+
+.btn-primary {
+    background-color: #fff;
+    color: #000;
+    border: none;
+    width: 100%;
+    padding: 0.75rem;
+}
+
+.btn-outline-secondary {
+    background-color: #2b2b2b;
+    color: #fff;
+    border: 1px solid #555;
+    width: 100%;
+    padding: 0.75rem;
+}
+
+#passwordSectionLogin,
+#passwordSection,
+#addressSection {
+    display: none;
+}
+
+/* Center modal */
+.modal-dialog {
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 1rem); /* Adjust for modal content */
+    margin: auto; /* Center the modal horizontally */
+}
+
+/* Make login card appear to hide behind the signup modal */
+.hidden {
+    opacity: 0.5; /* Dim the login card */
+    pointer-events: none; /* Prevent interaction */
+    z-index: 0; /* Ensure it's behind the modal */
+}
+
+/* Global Resets */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Background and Body Styles */
+body {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url("https://www.secondharvestmetrolina.org/image/interior-hero-images/bigstock--195794353-web.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Form Container */
+.form-container {
+    background: rgba(255, 255, 255, 0.8); /* Translucent form background */
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    width: 420px; /* Updated width */
+    max-width: 90%; /* Responsive design */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Form Styling */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+h5 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: midnightblue;
+}
+
+.form-label {
+    font-weight: 500;
+    color: midnightblue;
+}
+
+.form-control {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    font-size: 14px;
+    background: #f2f2f2; /* Input background */
+    width: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+.form-control:focus {
+    border-color: #453FCF;
+    box-shadow: 0 0 5px rgba(69, 63, 207, 0.5);
+}
+
+/* Button Styling */
+.btn-primary {
+    font-family: "Titillium Web", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    background: #17a589;
+    width: 100%;
+    border: 0;
+    border-radius: 30px; /* Smooth rounded corners */
+    padding: 15px;
+    color: #fff;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+    background: #148f77;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    transform: translateY(-4px);
+}
+
+.btn-primary:active {
+    transform: translateY(2px);
+    box-shadow: 0 2.5px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #453FCF;
+    font-size: 1rem;
+    padding: 0;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Modal Styles */
+.modal-content {
+    border-radius: 8px;
+}
+
+.modal-header {
+    background-color: #453FCF;
+    color: white;
+    border-bottom: none;
+}
+
+.modal-title {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.btn-close {
+    color: white;
+}
+
+/* Password Strength Indicator */
+.indicator {
+    border-radius: 6px;
+    padding: 4px;
+    background-color: #453FCF;
+    height: 10px;
+    display: flex;
+    justify-content: space-between;
+    display: none;
+}
+
+.indicator span {
+    width: 33%;
+    background: lightgrey;
+    border-radius: 5px;
+}
+
+.indicator span.active:before {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.indicator span.weak:before {
+    background-color: #ff4757;
+}
+
+.indicator span.medium:before {
+    background-color: orange;
+}
+
+.indicator span.strong:before {
+    background-color: #23ad5c;
+}
+
+/* Password Strength Text */
+.strength {
+    border-radius: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    background-color: #453FCF;
+    font-family: "Roboto", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    display: none;
+    color: #fff;
+}
+
+.strength.weak {
+    color: #ff4757;
+}
+
+.strength.medium {
+    color: orange;
+}
+
+.strength.strong {
+    color: #23ad5c;
+}
+
+/* Footer Styling */
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    padding: 1rem;
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 0.875rem;
+    font-family: Cambria, 'Hoefler Text', 'Liberation Serif', Times, 'Times New Roman', 'serif';
+}
+
+/* Additional Styles */
+.form .message {
+    margin: 6px 6px;
+    color: #808080;
+    font-size: 11px;
+    text-align: center;
+    font-weight: bold;
+    font-style: normal;
+}
+
+.form .message a {
+    color: #FFFFFF;
+    text-decoration: none;
+    font-size: 13px;
+}

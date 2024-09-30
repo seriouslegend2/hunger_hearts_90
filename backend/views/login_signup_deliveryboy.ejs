@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login and Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/login_signup_delivery.css">
+</head>
+
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <!-- Login Form -->
+                <div class="form-container" id="loginCard">
+                    <h5 class="text-center">Delivery Boy Login</h5>
+                    <form action="/auth/delLogin" method="POST" id="loginFormStep">
+                        <!-- Delivery Boy Name -->
+                        <div id="nameSectionLogin">
+                            <div class="mb-3">
+                                <label for="deliveryBoyName" class="form-label">Delivery Boy Name:</label>
+                                <input type="text" id="deliveryBoyName" name="deliveryBoyName" class="form-control" required>
+                            </div>
+                            <button type="button" class="btn btn-primary" id="nextToPasswordLogin">Next</button>
+                        </div>
+
+                        <!-- Password input (Initially hidden) -->
+                        <div id="passwordSectionLogin" style="display: none;">
+                            <div class="mb-3">
+                                <label for="passwordLogin" class="form-label">Password:</label>
+                                <input type="password" id="passwordLogin" name="password" class="form-control" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                        </div>
+                    </form>
+                    
+                    <p class="mt-3">Don't have an account? <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#signupModal" id="openSignupModal">Sign up</button></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Delivery Boy Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm" action="/auth/delSignup" method="POST">
+                        <!-- Delivery Boy Name -->
+                        <div class="mb-3">
+                            <label for="deliveryBoyNameSignup" class="form-label">Delivery Boy Name:</label>
+                            <input type="text" id="deliveryBoyNameSignup" name="deliveryBoyName" class="form-control" required>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-3">
+                            <label for="passwordDel" class="form-label">Password:</label>
+                            <input type="password" id="passwordDel" name="passwordDel" class="form-control" required>
+                        </div>
+
+                        <!-- Mobile Number -->
+                        <div class="mb-3">
+                            <label for="mobileNumber" class="form-label">Mobile Number:</label>
+                            <input type="tel" id="mobileNumber" name="mobileNumber" pattern="[0-9]{10}" class="form-control" required>
+                        </div>
+
+                        <!-- Vehicle Number -->
+                        <div class="mb-3">
+                            <label for="vehicleNo" class="form-label">Vehicle Number:</label>
+                            <input type="text" id="vehicleNo" name="vehicleNo" class="form-control" required>
+                        </div>
+
+                        <!-- Driving License Number -->
+                        <div class="mb-3">
+                            <label for="drivingLicenseNo" class="form-label">Driving License Number:</label>
+                            <input type="text" id="drivingLicenseNo" name="drivingLicenseNo" class="form-control" required>
+                        </div>
+
+                        <!-- Coordinates -->
+                        <h3>Current Location (Coordinates)</h3>
+                        <div class="mb-3">
+                            <label for="longitude" class="form-label">Longitude:</label>
+                            <input type="number" step="any" id="longitude" name="longitude" class="form-control" required>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="latitude" class="form-label">Latitude:</label>
+                            <input type="number" step="any" id="latitude" name="latitude" class="form-control" required>
+                        </div>
+                        
+                        <!-- Get Location Button -->
+                        <button type="button" class="btn btn-secondary" id="getLocationButton">Get Current Location</button>
+
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary mt-3">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Login Section
+            const nextToPasswordLoginBtn = document.getElementById("nextToPasswordLogin");
+            const nameSectionLogin = document.getElementById("nameSectionLogin");
+            const passwordSectionLogin = document.getElementById("passwordSectionLogin");
+
+            nextToPasswordLoginBtn.addEventListener("click", () => {
+                const deliveryBoyNameInput = document.getElementById("deliveryBoyName");
+                if (deliveryBoyNameInput.value.trim() === "") {
+                    alert("Please enter your name.");
+                } else {
+                    nameSectionLogin.style.display = "none";
+                    passwordSectionLogin.style.display = "block";
+                }
+            });
+
+            // Get current location for sign-up
+            document.getElementById('getLocationButton').addEventListener('click', () => {
+                // Display loading message or indicator
+        getLocationButton.innerText = 'Fetching location...';
+        getLocationButton.disabled = true;
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    // Set latitude and longitude values
+                    document.getElementById('latitude').value = position.coords.latitude;
+                    document.getElementById('longitude').value = position.coords.longitude;
+
+                    // Reset button state
+                    getLocationButton.innerText = 'Get Current Location';
+                    getLocationButton.disabled = false;
+                },
+                (error) => {
+                    // Handle different geolocation errors
+                    let errorMessage = '';
+                    switch (error.code) {
+                        case error.PERMISSION_DENIED:
+                            errorMessage = 'Location permission denied by user.';
+                            break;
+                        case error.POSITION_UNAVAILABLE:
+                            errorMessage = 'Location information is unavailable.';
+                            break;
+                        case error.TIMEOUT:
+                            errorMessage = 'The request to get user location timed out.';
+                            break;
+                        default:
+                            errorMessage = 'An unknown error occurred while fetching location.';
+                            break;
+                    }
+                    alert(errorMessage);
+
+                    // Reset button state
+                    getLocationButton.innerText = 'Get Current Location';
+                    getLocationButton.disabled = false;
+                }
+            );
+        } else {
+            alert("Geolocation is not supported by this browser.");
+
+            // Reset button state
+            getLocationButton.innerText = 'Get Current Location';
+            getLocationButton.disabled = false;
+        }
+            });
+
+           // Validate and log coordinates on form submission
+document.getElementById('signupForm').addEventListener('submit', (e) => {
+    const latitude = parseFloat(document.getElementById('latitude').value);
+    const longitude = parseFloat(document.getElementById('longitude').value);
+
+    // Validate coordinates
+    if (isNaN(latitude) || isNaN(longitude)) {
+        alert('Invalid coordinates provided. Please ensure you have obtained your location.');
+        e.preventDefault(); // Prevent form submission
+        return;
+    }
+
+    // If valid, proceed with form submission
+    e.currentTarget.submit(); // Submit the form if everything is valid
+});
+
+            });
+        
+    </script>
+</body>
+
+</html>

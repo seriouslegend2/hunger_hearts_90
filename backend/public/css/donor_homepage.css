@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.form-section, .post-list-section {
+    display: none;
+  }
+
+  body {
+    background-color: #f8f9fa;
+}
+
+.container {
+    padding: 20px;
+}
+
+h1, h2 {
+    font-family: 'Arial', sans-serif;
+}
+
+.form-section {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #ffffff;
+}
+
+.form-section.hidden {
+    display: none;
+}
+
+.btn-primary {
+    background-color: #007bff; /* Bootstrap primary color */
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Bootstrap secondary color */
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545; /* Bootstrap danger color */
+    border: none;
+}
+
+.list-group-item {
+    background-color: #fff;
+    border: 1px solid #dedede;
+    border-radius: 5px;
+}
+
+.list-group-item:hover {
+    background-color: #f7f7f7;
+}
+
+.modal-content {
+    transition: transform 0.3s ease;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+.nav-item {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 10px; /* Optional spacing */
+}

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://media.istockphoto.com/id/1620065544/vector/abstract-blurred-gradient-fluid-vector-background-design-wallpaper-template-with-dynamic.jpg?s=612x612&w=0&k=20&c=Js5k3EpF07m_xYltoEjLQ_znQT2D8OClVCq4mtP6xlI=');
+            background-size: cover;
+            background-position: center;
+            color: #00ccff; /* Brighter blue text */
+            overflow: hidden;
+            position: relative;
+        }
+        .container {
+            margin-top: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        .card {
+            margin-bottom: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 1px solid #00ccff;
+            transition: transform 0.3s ease, opacity 0.5s ease;
+            opacity: 0; /* Start hidden for animation */
+            animation: fadeIn 0.5s forwards; /* Fade in effect */
+        }
+        .card:nth-child(even) {
+            animation-delay: 0.2s; /* Stagger animation for even cards */
+        }
+        .card:nth-child(odd) {
+            animation-delay: 0.4s; /* Stagger animation for odd cards */
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px); /* Move up */
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-header h2 {
+            color: #00ccff; /* Neon blue header text */
+        }
+        .card-body {
+            background-color: rgba(0, 0, 0, 0.7); /* Darker background for card body */
+            border-radius: 5px;
+            padding: 15px;
+            max-height: 200px; /* Set maximum height */
+            overflow-y: auto; /* Enable vertical scrolling */
+        }
+        .card-body ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0;
+        }
+        .card-body li {
+            padding: 10px;
+            border-bottom: 1px solid #00ccff; /* Bottom border for list items */
+            color: #00ccff; /* Blue color for list items */
+        }
+        .logout-link {
+            margin-top: 20px;
+        }
+        .alert {
+            background-color: rgba(255, 0, 0, 0.8);
+            color: #fff;
+        }
+
+        .matrix {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .matrix span {
+            color: #00ccff; /* Brighter blue */
+            white-space: nowrap;
+            position: absolute;
+            animation: fall linear infinite;
+            font-size: 14px; /* Slightly larger text */
+            opacity: 1; /* Fully opaque */
+        }
+        @keyframes fall {
+            0% {
+                transform: translateY(-100%);
+            }
+            100% {
+                transform: translateY(100vh);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="matrix">
+        <span style="left: 10%; animation-duration: 5s;">10101100 01010101 11100010</span>
+        <span style="left: 20%; animation-duration: 6s;">00110101 10101011 11000011</span>
+        <span style="left: 30%; animation-duration: 4s;">01101000 10011001 01110010</span>
+        <span style="left: 40%; animation-duration: 7s;">kahsjdj 11010010 01110101</span>
+        <span style="left: 50%; animation-duration: 5s;">11001010 10101001 11110000</span>
+        <span style="left: 60%; animation-duration: 6s;">11110010 console. 11010101</span>
+        <span style="left: 70%; animation-duration: 4s;">00101101 11011001 logError</span>
+        <span style="left: 80%; animation-duration: 7s;">10100101 01100110 11011011</span>
+        <span style="left: 90%; animation-duration: 5s;">00010010 11001100 01101010</span>
+    </div>
+
+    <div class="container">
+        <h1 class="text-center">Welcome, <%= mod.username %> (Role: <%= mod.role %>)</h1>
+
+        <% if (mod.role === 'superuser') { %>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Moderators List</h2>
+                </div>
+                <div class="card-body">
+                    <ul id="moderators-list" class="list-group"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Admins List</h2>
+                </div>
+                <div class="card-body">
+                    <ul id="admins-list" class="list-group"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Donors List</h2>
+                </div>
+                <div class="card-body">
+                    <ul id="donors-list" class="list-group"></ul>
+                </div>
+            </div>
+
+        <% } else if (mod.role === 'moderator') { %>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Admins List</h2>
+                </div>
+                <div class="card-body">
+                    <ul id="admins-list" class="list-group"></ul>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Donors List</h2>
+                </div>
+                <div class="card-body">
+                    <ul id="donors-list" class="list-group"></ul>
+                </div>
+            </div>
+        
+        <% } else if (mod.role === 'admin') { %>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="mb-0">Donors List</h2>
+                </div>
+                <div class="card-body">
+                    <ul id="donors-list" class="list-group"></ul>
+                </div>
+            </div>
+
+        <% } else { %>
+            <div class="alert alert-danger" role="alert">
+                You do not have permission to view this list.
+            </div>
+        <% } %>
+
+        <div class="text-center logout-link">
+            <a href="/admin/logoutAdmin" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+
+    <script src="/js/admin_dashboard.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</body>
+</html>

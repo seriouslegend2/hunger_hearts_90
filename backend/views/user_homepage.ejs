@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>User Homepage</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/user_homepage.css" />
+  <link rel="stylesheet" href="/css/requests.css" />
+  <link rel="stylesheet" href="/css/user_homepage_posts.css" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/user_homepage_order.css">
+
+  <style>
+    /* Basic styling for the map and modal */
+    #map {
+      height: 400px;
+      /* Adjust height to fit inside the modal */
+      width: 100%;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .price-tag {
+      background-color: #ff0000;
+      color: #fff;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+  <script src="/js/user_homepage.js"></script>
+  <script src="/js/user_homepage_topRight.js"></script>
+  <script src="/js/user_homepage_bottomRight.js"></script>
+  <script src="/js/user_homepage_posts.js"></script>
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">User Dashboard</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <span class="nav-link">Hi, <%= user.username %></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/auth/u_logout">Logout</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container-fluid">
+    <div class="row">
+      <!-- Main content section -->
+      <div class="col-lg-12 d-flex">
+        <!-- Existing page structure with posts, etc. -->
+        <div class="row row-equal page-container w-100">
+          <div class="col-lg-6 left-section">
+            <!-- Left section: Sidebar -->
+            <div class="sidebar-container col-lg-1">
+              <aside
+                class="flex flex-col items-center h-screen py-8 space-y-8 bg-white dark:bg-gray-900 dark:border-gray-700">
+                <!-- Button that shows posts -->
+                <a href="#" id="show-posts-btn"
+                  class="p-1.5 text-gray-500 focus:outline-none transition-colors duration-200 rounded-lg dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                  onclick="showPosts(event, this)">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M21 21l-4.35-4.35M17.5 10.5a7 7 0 1 0-14 0 7 7 0 0 0 14 0z" />
+                  </svg>
+                </a>
+
+
+                <!-- Button that shows chat -->
+                <a href="#" id="show-chat-btn"
+                  class="p-1.5 text-gray-500 focus:outline-none transition-colors duration-200 rounded-lg dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                  onclick="showChat(event, this)">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                  </svg>
+                </a>
+                <!-- <a href="#" id="select-location-btn"
+                  class="p-1.5 text-gray-500 focus:outline-none transition-colors duration-200 rounded-lg dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                  onclick="showLocationPicker(event, this)">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="w-6 h-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                      d="M12 2.25C6.477 2.25 2.25 6.477 2.25 12s4.227 9.75 9.75 9.75 9.75-4.227 9.75-9.75S17.523 2.25 12 2.25zm0 14.25a4.5 4.5 0 100-9 4.5 4.5 0 000 9z" />
+                  </svg>
+                </a> -->
+                <a href="#" id="show-chat-btn"
+                class="p-1.5 text-gray-500 focus:outline-none transition-colors duration-200 rounded-lg dark:text-gray-400 dark:hover:bg-gray-800 hover:bg-gray-100"
+                onclick="showDeliveryboy(event, this)">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                  <path stroke-linecap="round" stroke-linejoin="round"
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+              </a>
+              
+
+
+              </aside>
+            </div>
+
+            <!-- Accounts Section -->
+            <div
+              class="accounts-container h-screen py-8 overflow-y-auto bg-white border-l border-r sm:w-64 w-60 dark:bg-gray-900 dark:border-gray-700">
+              <h2 class="px-5 text-lg font-medium text-gray-800 dark:text-white">
+                Accounts
+              </h2>
+              <div class="mt-8 space-y-4">
+                <% donorList.forEach(donorUsername => { %>
+                <button
+                  class="flex items-center w-full px-5 py-2 transition-colors duration-200 dark:hover:bg-gray-800 gap-x-2 hover:bg-gray-100 focus:outline-none"
+                  onclick="fetchRequests('<%= donorUsername %>')">
+                  <div class="relative">
+                    <span
+                      class="object-cover w-8 h-8 rounded-full bg-gray-300 flex items-center justify-center text-white font-bold">
+                      <%= donorUsername.charAt(0) %>
+                    </span>
+                  </div>
+                  <div class="text-left rtl:text-right">
+                    <h1 class="text-sm font-medium text-gray-700 capitalize dark:text-white">
+                      <%= donorUsername %>
+                    </h1>
+                  </div>
+                </button>
+                <% }); %>
+              </div>
+            </div>
+
+            <!-- Main Content Section -->
+            <div id="main-content" class="main-content">
+              <h3>Chat with a Donor</h3>
+              <p>Start your conversation here...</p>
+            </div>
+          </div>
+
+          <!-- Right section: Two equal parts -->
+          <div class="col-lg-6 d-flex flex-column">
+            <div class="top-right-section">
+              <h3>Top Right Section</h3>
+              <p>This is the top-right part of the page content.</p>
+            </div>
+            <div class="bottom-right-section">
+              <h3>Assigned Orders</h3>
+              <div id="orders-container" class="max-w-2xl mx-auto"></div>
+            </div>
+            
+            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Posts Section -->
+  <div id="posts-section" style="display: none">
+    <h3>All Posts</h3>
+    <div>
+      <button onclick="filterPosts('all')" class="btn btn-info">
+        All Deals
+      </button>
+      <button onclick="filterPosts('active')" class="btn btn-success">
+        Active Deals
+      </button>
+      <button onclick="filterPosts('closed')" class="btn btn-danger">
+        Closed Deals
+      </button>
+    </div>
+    <div id="posts-list">
+
+      <div id="location-modal"
+        class="hidden fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-2xl">
+          <h2 class="text-lg font-semibold mb-4">Select your location</h2>
+
+          <!-- Map container inside the modal -->
+          <div id="map"></div>
+
+          <button onclick="saveLocation()" class="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg">Save
+            Location</button>
+          <button onclick="closeModal()" class="mt-4 ml-2 bg-gray-500 text-white px-4 py-2 rounded-lg">Close</button>
+        </div>
+      </div>
+
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</body>
+
+</html>

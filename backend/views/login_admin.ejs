@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #0d0d0d; /* Dark background */
+            color: #00ff00; /* Bright green text */
+            font-family: 'Courier New', Courier, monospace;
+            overflow: hidden; /* Prevent scrollbars */
+        }
+        .moving-text {
+            position: absolute;
+            white-space: nowrap;
+            animation: move linear infinite;
+            font-size: 0.8em; /* Smaller font size for cipher text */
+            color: #00ff00;
+            opacity: 0.7;
+        }
+        @keyframes move {
+            0% { transform: translateY(-100%); }
+            100% { transform: translateY(100vh); }
+        }
+        .login-container {
+            max-width: 400px;
+            padding: 20px;
+            background-color: #1a1a1a; /* Dark container background */
+            border: 1px solid #00ff00; /* Green border */
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.5); /* Green glow */
+            z-index: 10; /* Ensure it stays above the moving text */
+        }
+        .login-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-weight: 400;
+            text-align: center;
+            color: #00ff00; /* Bright green title */
+        }
+        .form-group label {
+            font-weight: 500;
+            color: #00ff00; /* Bright green labels */
+        }
+        .form-control {
+            background-color: #2a2a2a; /* Dark input background */
+            color: #00ff00; /* Bright green text */
+            border: 1px solid #00ff00; /* Green border */
+        }
+        .form-control:focus {
+            background-color: #1a1a1a; /* Darker focus background */
+            border-color: #00ff00; /* Bright green border on focus */
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Green glow on focus */
+        }
+        .btn-primary {
+            background-color: #00ff00; /* Bright green button */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #00cc00; /* Slightly darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>Admin Login</h2>
+        <form action="/admin/loginAdmin" method="POST">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Login</button>
+        </form>
+    </div>
+
+    <script>
+        const body = document.body;
+        const numberOfLines = 50; // Adjust this to increase or decrease the number of lines
+        const lineHeight = 20; // Height of each line
+
+        // Generate enough lines of cipher text to fill the page
+        for (let i = 0; i < numberOfLines; i++) {
+            for (let j = 0; j < Math.ceil(window.innerWidth / 200); j++) { // Fill horizontally
+                const line = document.createElement('div');
+                line.className = 'moving-text';
+                line.innerText = generateCipherText(40); // 20 characters long
+                line.style.animationDuration = `${10 + Math.random() * 10}s`; // Random duration between 10s and 20s
+                line.style.top = `${i * lineHeight}vh`; // Fixed position based on index
+                line.style.left = `${j * 200}px`; // Spacing for horizontal duplication
+                body.appendChild(line);
+            }
+        }
+
+        // Function to generate random cipher text
+        function generateCipherText(length) {
+            const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()';
+            let result = '';
+            for (let i = 0; i < length; i++) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+            }
+            return result;
+        }
+    </script>
+</body>
+</html>

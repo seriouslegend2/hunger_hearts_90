@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.left-section, .top-right-section, .bottom-right-section {
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.left-section {
+    display: flex;
+    height: 100%; /* Ensure it takes the full height of the parent */
+    overflow: hidden; /* Prevent any overflow from the left section */
+    width: 95%;
+    border-style: solid;
+}
+
+.flex.flex-col.items-center {
+    height: auto; /* Allow the height to be determined by content */
+    max-height: 100%; /* Prevent exceeding the left section */
+    padding: 0; /* Remove any extra padding if necessary */
+    overflow-y: auto; /* Allow scrolling if content exceeds */
+}
+
+.top-right-section {
+    width: 100%; /* Takes up 50% of the screen width */
+    position: absolute; /* Position relative to the parent */
+    top: 0; /* Aligns it to the top */
+    right: 0; /* Aligns it to the right */
+    height: 50%; /* Each section takes half of the right column */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #ffffff; /* Optional: Background color */
+    padding: 20px; /* Optional: Padding for aesthetics */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: Shadow effect */
+    z-index: 0; /* Ensure it appears above other content */
+}
+
+.bottom-right-section {
+    width: 100%; /* Takes up 50% of the screen width */
+    position: absolute; /* Position relative to the parent */
+    bottom: 0; /* Aligns it to the bottom */
+    right: 0; /* Aligns it to the right */
+    height: 50%; /* Each section takes half of the right column */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: #ffffff; /* Optional: Background color */
+    padding: 20px; /* Optional: Padding for aesthetics */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* Optional: Shadow effect */
+    z-index: 1; /* Ensure it appears above other content */
+}
+
+
+.top-right-section::-webkit-scrollbar {
+    width: 0; /* Hide vertical scrollbar */
+    background: transparent; /* Optional: make the background transparent */
+}
+.row-equal {
+    height: 100vh; /* Full viewport height */
+}
+
+.page-container {
+    padding: 20px;
+    height: calc(100vh - 70px); /* Adjust based on the height of your navbar */
+    display: flex;
+}
+
+
+.main-content {
+    flex-grow: 1; /* Takes remaining space */
+    background-color: #ffffff; /* Light background */
+    /* border: solid 1px #000000; */
+    color: #000000; /* Black text */
+    padding: 20px;
+    border-radius: 0 8px 8px 0;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto; /* Enable vertical scrolling */
+    display: flex;
+    flex-direction: column; /* Stack requests vertically */
+    justify-content: flex-start; /* Align requests to the bottom */
+
+
+}
+
+.main-content::-webkit-scrollbar {
+    width: 0; /* Hide vertical scrollbar */
+    background: transparent; /* Optional: make the background transparent */
+}
+
+.request-box {
+    background-color: #ddd; /* Red background for requests */
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+
+
+.donor-list {
+    margin-bottom: 20px;
+    background-color: #2f3136; /* Dark background */
+    /* border: solid 1px #000000; */
+
+    color: #ffffff; /* White text */
+    padding: 20px;
+    border-radius: 8px 0 0 8px;
+    height: 100%; /* Full height */
+}
+
+.donor {
+    display: flex;
+    align-items: center;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.donor-icon {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #aaa; /* Placeholder color */
+    text-align: center;
+    line-height: 40px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.donor-name {
+    margin: 0;
+}
+
+
+
+
+
+.top-right-section, .bottom-right-section {
+    height: 50%; /* Each section takes half of the right column */
+    overflow-y: auto; /* Enable vertical scrolling */
+}

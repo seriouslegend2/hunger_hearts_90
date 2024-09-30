@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <title>DeliveryBoy Dashboard</title>
+</head>
+
+<body class="bg-gray-100 p-6">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-2xl font-semibold mb-4">Welcome, <%= deliveryboy.deliveryBoyName %></h1>
+
+        <!-- Tabs for Ongoing and Delivered Orders -->
+        <div class="flex overflow-x-auto whitespace-nowrap border-b border-gray-300 dark:border-gray-500 mb-6">
+            <button id="ongoingTab" onclick="showTab('ongoing')" class="inline-flex items-center h-12 px-4 text-gray-700 dark:text-white border-b-2 border-red-500 focus:outline-none">
+                <span class="text-base font-semibold">Ongoing</span>
+            </button>
+            <button id="deliveredTab" onclick="showTab('delivered')" class="inline-flex items-center h-12 px-4 text-gray-700 dark:text-white border-b-2 border-transparent hover:border-gray-400 dark:hover:border-gray-300 focus:outline-none">
+                <span class="text-base font-semibold">Delivered</span>
+            </button>
+        </div>
+
+        <!-- On-going Orders Section -->
+        <div id="ongoingOrders" class="order-section">
+            <h2 class="text-xl font-semibold mb-4">On-going Orders</h2>
+            <% if (orders && orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+            <% if (order.status === 'on-going' || order.status === 'picked-up') { %>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 p-6">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-gray-600 dark:text-gray-400"><%= new Date(order.timestamp).toLocaleDateString() %></span>
+                    <span class="px-3 py-1 text-sm font-bold text-white rounded <%= order.status === 'on-going' ? 'bg-red-500' : 'bg-yellow-500' %>">
+                        <%= order.status %>
+                    </span>
+                </div>
+                <div class="mt-2">
+                    <p class="text-lg font-semibold text-gray-700 dark:text-white">Order ID: <%= order._id %></p>
+                    <p class="text-gray-600 dark:text-gray-300">Donor: <%= order.donorUsername %></p>
+                    <p class="text-gray-600 dark:text-gray-300">User: <%= order.userUsername %></p>
+                    <p class="text-gray-600 dark:text-gray-300">Pickup Location: <%= order.pickupLocation %></p>
+                    <p class="text-gray-600 dark:text-gray-300">Delivery Location: <%= order.deliveryLocation %></p>
+                </div>
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-sm font-bold text-gray-700 dark:text-gray-200">Timestamp: <%= new Date(order.timestamp).toLocaleString() %></span>
+                    <div class="space-x-2">
+                        <!-- Picked-Up Button -->
+                        <form method="POST" action="/order/setOrderPickedUp" class="inline-block">
+                            <input type="hidden" name="orderId" value="<%= order._id %>" />
+                            <button type="submit" class="px-4 py-2 text-sm font-bold text-white bg-blue-500 rounded">Mark as Picked-Up</button>
+                        </form>
+                        <!-- Delivered Button -->
+                        <form method="POST" action="/order/setOrderDelivered" class="inline-block">
+                            <input type="hidden" name="orderId" value="<%= order._id %>" />
+                            <button type="submit" class="px-4 py-2 text-sm font-bold text-white bg-green-500 rounded">Mark as Delivered</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <% }); %>
+            <% } else { %>
+            <p class="text-gray-600">No on-going orders.</p>
+            <% } %>
+        </div>
+
+        <!-- Delivered Orders Section -->
+        <div id="deliveredOrders" class="order-section hidden">
+            <h2 class="text-xl font-semibold mb-4">Delivered Orders</h2>
+            <% if (orders && orders.length > 0) { %>
+            <% orders.forEach(order => { %>
+            <% if (order.status === 'delivered') { %>
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md mb-4 p-6">
+                <div class="flex items-center justify-between">
+                    <span class="text-sm text-gray-600 dark:text-gray-400"><%= new Date(order.timestamp).toLocaleDateString() %></span>
+                    <span class="px-3 py-1 text-sm font-bold text-white bg-green-500 rounded">Delivered</span>
+                </div>
+                <div class="mt-2">
+                    <p class="text-lg font-semibold text-gray-700 dark:text-white">Order ID: <%= order._id %></p>
+                    <p class="text-gray-600 dark:text-gray-300">Donor: <%= order.donorUsername %></p>
+                    <p class="text-gray-600 dark:text-gray-300">User: <%= order.userUsername %></p>
+                    <p class="text-gray-600 dark:text-gray-300">Pickup Location: <%= order.pickupLocation %></p>
+                    <p class="text-gray-600 dark:text-gray-300">Delivery Location: <%= order.deliveryLocation %></p>
+                </div>
+                <div class="mt-4 text-sm font-bold text-gray-700 dark:text-gray-200">Timestamp: <%= new Date(order.timestamp).toLocaleString() %></div>
+            </div>
+            <% } %>
+            <% }); %>
+            <% } else { %>
+            <p class="text-gray-600">No delivered orders.</p>
+            <% } %>
+        </div>
+    </div>
+
+    <script>
+        function showTab(tab) {
+            const ongoingOrders = document.getElementById('ongoingOrders');
+            const deliveredOrders = document.getElementById('deliveredOrders');
+            const ongoingTab = document.getElementById('ongoingTab');
+            const deliveredTab = document.getElementById('deliveredTab');
+
+            if (tab === 'ongoing') {
+                ongoingOrders.classList.remove('hidden');
+                deliveredOrders.classList.add('hidden');
+                ongoingTab.classList.add('border-red-500');
+                deliveredTab.classList.remove('border-red-500');
+            } else {
+                deliveredOrders.classList.remove('hidden');
+                ongoingOrders.classList.add('hidden');
+                deliveredTab.classList.add('border-red-500');
+                ongoingTab.classList.remove('border-red-500');
+            }
+        }
+    </script>
+</body>
+
+</html>

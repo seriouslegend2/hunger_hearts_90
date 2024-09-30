@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Signup</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #0d0d0d; /* Dark background */
+            color: #00ff00; /* Bright green text */
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .container {
+            margin-top: 50px;
+            background-color: #1a1a1a; /* Darker container background */
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 0, 0.5); /* Green glow */
+        }
+        .form-control {
+            background-color: #2a2a2a; /* Dark input background */
+            color: #00ff00; /* Bright green text */
+            border: 1px solid #00ff00; /* Green border */
+        }
+        .form-control:focus {
+            background-color: #1a1a1a; /* Darker focus background */
+            border-color: #00ff00; /* Bright green border on focus */
+            box-shadow: 0 0 5px rgba(0, 255, 0, 0.8); /* Green glow on focus */
+        }
+        .btn-primary {
+            background-color: #00ff00; /* Bright green button */
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #00cc00; /* Slightly darker green on hover */
+        }
+        label {
+            color: #00ff00; /* Bright green labels */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center">Admin Signup</h2>
+        <form action="/admin/signupAdmin" method="POST">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number:</label>
+                <input type="text" class="form-control" id="mobileNumber" name="mobileNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select class="form-control" id="role" name="role" required>
+                    <option value="moderator">Moderator</option>
+                    <option value="admin">Admin</option>
+                    <option value="superuser">Superuser</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Signup</button>
+        </form>
+    </div>
+</body>
+</html>

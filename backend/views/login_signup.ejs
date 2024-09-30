@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Login and Sign Up</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="/css/login_signup.css">
+</head>
+<body>
+    <div class="container form-container" id="loginCard">
+        <!-- User Login Card -->
+        <h5 class="text-center">User Login</h5>
+        <form action="/auth/userLogin" method="POST">
+            <div id="emailSectionLogin">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" name="email" class="form-control" required />
+                </div>
+                <button type="button" class="btn btn-primary" id="nextToPasswordLogin">Next</button>
+            </div>
+            <div id="passwordSectionLogin">
+                <div class="mb-3">
+                    <label for="passwordLogin" class="form-label">Password</label>
+                    <input type="password" id="passwordLogin" name="password" class="form-control" required />
+                </div>
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </div>
+        </form>
+
+        <!-- Sign Up Button -->
+        <div class="text-center mt-3" id="signupLinkContainer">
+            <p style="color:black">Don't have an account?<button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#signupModal" id="openSignupModal">Sign Up</button></p>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background-color: #ffffff; color: #fff; max-width: 600px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">User Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color:#fff"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="signupForm" action="/auth/userSignup" method="POST">
+                        <div id="usernameSection">
+                            <div class="mb-3">
+                                <label for="username" class="form-label">Username</label>
+                                <input type="text" id="username" name="username" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="emailSignup" class="form-label">Email</label>
+                                <input type="email" id="emailSignup" name="email" class="form-control" required />
+                            </div>
+                            <div class="mb-3">
+                                <label for="mobileNumber" class="form-label">Mobile Number</label>
+                                <input type="text" id="mobileNumber" name="mobileNumber" class="form-control" required />
+                            </div>
+                            <button type="button" class="btn btn-primary" id="nextToPassword">Next</button>
+                        </div>
+                        <div id="passwordSection">
+                            <div class="mb-3">
+                                <label for="passwordSignup" class="form-label">Password</label>
+                                <input type="password" id="passwordSignup" name="password" class="form-control" required />
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-outline-secondary">Cancel</button>
+                                <button type="button" class="btn btn-primary" id="nextToAddress">Next</button>
+                            </div>
+                        </div>
+                        <div id="addressSection">
+                            <fieldset class="border p-3 mb-3">
+                                <legend class="w-auto">Address</legend>
+                                <div class="mb-3">
+                                    <label for="doorNo" class="form-label">Door No</label>
+                                    <input type="text" id="doorNo" name="address[doorNo]" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="street" class="form-label">Street</label>
+                                    <input type="text" id="street" name="address[street]" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="landmark" class="form-label">Landmark</label>
+                                    <input type="text" id="landmark" name="address[landmark]" class="form-control" />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="townCity" class="form-label">Town/City</label>
+                                    <input type="text" id="townCity" name="address[townCity]" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="state" class="form-label">State</label>
+                                    <input type="text" id="state" name="address[state]" class="form-control" required />
+                                </div>
+                                <div class="mb-3">
+                                    <label for="pincode" class="form-label">Pincode</label>
+                                    <input type="text" id="pincode" name="address[pincode]" class="form-control" required />
+                                </div>
+                            </fieldset>
+                            <div class="d-flex justify-content-between">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" style="width: 48%">Cancel</button>
+                                <button type="submit" class="btn btn-primary" style="width: 48%">Sign Up</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Custom JavaScript for Sequential Form Display -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Login Section
+            const nextToPasswordLoginBtn = document.getElementById("nextToPasswordLogin");
+            const emailSectionLogin = document.getElementById("emailSectionLogin");
+            const passwordSectionLogin = document.getElementById("passwordSectionLogin");
+
+            nextToPasswordLoginBtn.addEventListener("click", () => {
+                const emailInput = document.getElementById("email");
+                if (emailInput.value.trim() === "") {
+                    alert("Please enter your email.");
+                } else {
+                    emailSectionLogin.style.display = "none";
+                    passwordSectionLogin.style.display = "block";
+                    const signupLink = document.getElementById("openSignupModal");
+                    signupLink.style.display = "none";
+                }
+            });
+
+            const cancelBtnLogin = document.querySelector("#passwordSectionLogin .btn-outline-secondary");
+            cancelBtnLogin.addEventListener("click", () => {
+                passwordSectionLogin.style.display = "none";
+                emailSectionLogin.style.display = "block";
+                const signupLink = document.getElementById("openSignupModal");
+                signupLink.style.display = "block";
+            });
+
+            // Sign-Up Section
+            const nextToPasswordBtn = document.getElementById("nextToPassword");
+            const usernameSection = document.getElementById("usernameSection");
+            const passwordSection = document.getElementById("passwordSection");
+
+            nextToPasswordBtn.addEventListener("click", () => {
+                const usernameInput = document.getElementById("username");
+                if (usernameInput.value.trim() === "") {
+                    alert("Please enter your username.");
+                } else {
+                    usernameSection.style.display = "none";
+                    passwordSection.style.display = "block";
+                }
+            });
+
+            const cancelBtnSignup = document.querySelector("#passwordSection .btn-outline-secondary");
+            cancelBtnSignup.addEventListener("click", () => {
+                passwordSection.style.display = "none";
+                usernameSection.style.display = "block";
+            });
+
+            const nextToAddressBtn = document.getElementById("nextToAddress");
+            const addressSection = document.getElementById("addressSection");
+
+            nextToAddressBtn.addEventListener("click", () => {
+                const passwordInput = document.getElementById("passwordSignup");
+                if (passwordInput.value.trim() === "") {
+                    alert("Please enter your password.");
+                } else {
+                    passwordSection.style.display = "none";
+                    addressSection.style.display = "block";
+                }
+            });
+
+            const cancelBtnAddress = document.querySelector("#addressSection .btn-outline-secondary");
+            cancelBtnAddress.addEventListener("click", () => {
+                addressSection.style.display = "none";
+                passwordSection.style.display = "block";
+            });
+
+            // Reset Forms Function
+            function resetForms() {
+                // Reset Login Form
+                emailSectionLogin.style.display = "block";
+                passwordSectionLogin.style.display = "none";
+                document.getElementById("email").value = "";
+                document.getElementById("passwordLogin").value = "";
+
+                const signupLink = document.getElementById("openSignupModal");
+                signupLink.style.display = "block";
+
+                // Reset Sign Up Form
+                usernameSection.style.display = "block";
+                passwordSection.style.display = "none";
+                addressSection.style.display = "none";
+                document.getElementById("username").value = "";
+                document.getElementById("emailSignup").value = "";
+                document.getElementById("mobileNumber").value = "";
+                document.getElementById("passwordSignup").value = "";
+                document.getElementById("doorNo").value = "";
+                document.getElementById("street").value = "";
+                document.getElementById("landmark").value = "";
+                document.getElementById("townCity").value = "";
+                document.getElementById("state").value = "";
+                document.getElementById("pincode").value = "";
+            }
+
+            // Optional: Reset forms when modal is closed
+            const signupModal = document.getElementById('signupModal');
+            signupModal.addEventListener('hidden.bs.modal', resetForms);
+        });
+    </script>
+</body>
+</html>

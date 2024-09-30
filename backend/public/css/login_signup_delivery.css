@@ -1,0 +1,92 @@
+/* General body styling */
+body {
+    background-color: #000000;
+    color: #0c0b0b;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden; /* To ensure no overflow */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("https://media.giphy.com/media/3ohjV4TqA25cn3HnK8/giphy.gif?cid=ecf05e47hveozmvha4zg3yhcdi867x930a5r3qjdhgj4zdwk&ep=v1_gifs_search&rid=giphy.gif&ct=g");
+    background-size: cover;
+    background-size: 1920px 1150px; /* width height */
+
+    background-position: center;
+    /* Adjust the blur value as needed */
+    z-index: -1; /* Keep the blurred image behind the content */
+}
+
+/* Container for both login and signup forms */
+.form-container {
+    position: relative;
+    background-color: rgba(131, 131, 131, 0.404); /* Updated for transparency */
+    border-radius: 30px;
+    padding: 2rem;
+    width: 80%;
+    max-width: 600px; /* Increased width */
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 50px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 26px -18px inset;
+    text-align: center;
+    transition: all ease 0.3s;
+}
+
+/* Hover effect for form container */
+.form-container:hover {
+    box-shadow: 0px 0px 20px 1px #ffbb763f;
+    border: 1px solid rgba(255, 255, 255, 0.454);
+}
+
+/* Form input fields styling */
+.form-control {
+    background-color: #2b2b2b; /* Input field background */
+    border: none;
+    color: #000000; /* Input text color */
+    margin-bottom: 1rem;
+    padding: 0.75rem;
+    border-radius: 5px; /* Added border radius for input fields */
+    transition: background-color 0.3s; /* Smooth transition for background color */
+}
+
+.form-control:hover {
+    background-color: rgba(255, 255, 255, 0.1); /* Change on hover for input fields */
+}
+
+/* Button styles */
+.btn-primary {
+    background-color: #fff; /* Changed to white */
+    color: #000;
+    border: none;
+    width: 100%;
+    padding: 0.75rem;
+}
+
+.btn-primary:hover {
+    background-color: #f0f0f0; /* Slightly lighter on hover */
+}
+
+/* Modal background color adjustment */
+.modal-content {
+    background-color: #b1a191; /* Match card background */
+    border-radius: 8px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.7); /* Slightly stronger shadow for pop effect */
+    color: #fff;
+}
+
+/* Close button in the modal */
+.btn-close {
+    filter: invert(100%); /* Invert to make the close button white */
+}
+
+/* Additional styling for header and footer if needed */
+h5 {
+    color: #fff;
+}

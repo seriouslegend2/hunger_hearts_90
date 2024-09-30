@@ -1,0 +1,138 @@
+/* Ensure the card container occupies full height */
+.container {
+    height: fit-content;
+    background-color: #121212;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Adjust card size and padding for better fit */
+  .card {
+    width: 100%;
+    max-width: 550px;
+    background-color: #1e1e1e;
+    color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Card header styling */
+  .card-header {
+    text-align: center;
+    margin-bottom: 15px;
+  }
+  
+  .card-title {
+    font-size: 1.8rem;
+  }
+  
+  .card-text {
+    font-size: 1.1rem;
+  }
+  
+  /* Input and label styling */
+  .form-label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+  }
+  
+  .form-control {
+    background-color: #2b2b2b;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 5px;
+  }
+  
+  input::placeholder {
+    color: #888;
+  }
+  
+  /* Button styles */
+  button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #333;
+  }
+  
+  .btn-primary {
+    background-color: #fff;
+    color: #000;
+    border: none;
+  }
+  
+  .btn-outline-secondary {
+    background-color: #2b2b2b;
+    color: #fff;
+    border: 1px solid #555;
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: #444;
+    border-color: #777;
+  }
+  
+  /* Footer link styles */
+  .card-footer {
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .card-footer p {
+    font-size: 1rem;
+  }
+  
+  .btn-link {
+    font-size: 1rem;
+    color: #00aaff;
+    text-decoration: none;
+  }
+  
+  .btn-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Address fieldset */
+  fieldset {
+    border: 1px solid #555;
+    padding: 15px;
+    margin-top: 10px;
+  }
+  
+  legend {
+    color: #888;
+    font-size: 1.2rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .card {
+      padding: 10px;
+    }
+  
+    .form-control {
+      font-size: 0.9rem;
+    }
+  
+    button {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+  
+    .card-title {
+      font-size: 1.5rem;
+    }
+  
+    .card-text, .form-label, .btn-link {
+      font-size: 0.9rem;
+    }
+  }
+  
